@@ -76,7 +76,7 @@ class withdrawController extends GetxController{
       isloading = false;
       apicontroller.loginprogress(response,success:(serverdata){
 
-        prefs.write('points', serverdata['data']["next_bal"]);
+        prefs.write('points', serverdata['data']["next_bal"].toString());
         CustomAlertDialogloader(
             title: "Withdraw Successful",
             message: serverdata["message"],

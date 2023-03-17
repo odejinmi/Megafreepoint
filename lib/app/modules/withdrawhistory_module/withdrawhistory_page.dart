@@ -10,7 +10,7 @@ class withdrawhistoryPage extends GetView<withdrawhistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Withdraw History Page')),
+      appBar: AppBar(title: const Text('Withdrawal History Page')),
       body: Container(
         child: Obx(()=>controller.isloading? loader():ListView.builder(
           padding: const EdgeInsets.all(8.0),
@@ -35,14 +35,12 @@ class withdrawhistoryPage extends GetView<withdrawhistoryController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(controller
-                              .banklist[position]["bank_account"]["account_name"], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                          Text("${controller.banklist[position]["bank_account"]["account_name"]} (${controller.banklist[position]["bank_account"]["account_number"]})", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                           const SizedBox(height: 10,),
-                          Text("Amount withdraw: "+controller
+                          Text("Points Withdrawn: "+controller
                               .banklist[position]["amount"]),
                           const SizedBox(height: 10,),
-                          Text("Withdraw status: "+controller
-                              .banklist[position]["status"]),
+                          Text("Withdrawal Status: ${controller.banklist[position]["status"].toString().toUpperCase()} "),
                           const SizedBox(width: 20,),
                         ],
                       ),

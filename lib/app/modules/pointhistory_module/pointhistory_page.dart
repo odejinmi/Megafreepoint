@@ -38,7 +38,7 @@ class pointhistoryPage extends GetView<pointhistoryController> {
                           const SizedBox(height: 10,),
                           Text("Previous point: " + controller.banklist[position]["prev_bal"]+" New point: " + controller.banklist[position]["next_bal"]),
                           const SizedBox(height: 10,),
-                          Text("Date: " +(controller.banklist[position]["created_at"])),
+                          Text("Date: ${controller.banklist[position]["created_at"].toString().split('T')[0]} ${controller.banklist[position]["created_at"].toString().split('T')[1].toString().split('.')[0]}"),
 
                           const SizedBox(width: 20,),
                         ],

@@ -53,7 +53,7 @@ class withdrawPage extends GetView<withdrawController> {
                       ],
                     ),
                     const Spacer(),
-                    Text("#${double.parse(points) * pointvalue}",
+                    Text("NGN${double.parse(points) * pointvalue}",
                         style: const TextStyle(color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w600))
@@ -65,7 +65,7 @@ class withdrawPage extends GetView<withdrawController> {
                     const Text("Exchange rate:", style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600)),
                     const Spacer(),
-                    Text("1 point = #$pointvalue", style: const TextStyle(
+                    Text("1 point = NGN$pointvalue", style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w600))
                   ],
                 ),
@@ -125,7 +125,7 @@ class withdrawPage extends GetView<withdrawController> {
                       Text("NGN(Bank)", style: TextStyle(color: Colors
                           .white),),
                       SizedBox(height: 10,),
-                      Text("Minimum Withdrawal 1000 point (#1000",
+                      Text("Minimum Withdrawal 1000 point (NGN 500)",
                         style: TextStyle(color: Colors.white),)
                     ],
                   ),
@@ -251,11 +251,14 @@ class withdrawPage extends GetView<withdrawController> {
           const SizedBox(height: 20,),
           const Text("Tips of withdrawal:",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+          const SizedBox(height: 10,),
           const Text(
-            "Tip 1: The minimumn withdrawal amount is 1000 points and the one-off fee is 5 points",
+            "Tip 1: The minimum withdrawal amount is 1000 points",
             style: TextStyle(color: Colors.red),),
+          const SizedBox(height: 10,),
           const Text("Tip 2: Withdrawals will be made within 24 hours!",
             style: TextStyle(color: Colors.red),),
+          const SizedBox(height: 10,),
           const Text(
             "Tip 3: If you have any queries, please Contact our online customer service.",
             style: TextStyle(color: Colors.red),),
@@ -273,7 +276,7 @@ class withdrawPage extends GetView<withdrawController> {
                   child: const Text("Confirm"),
                 ),
                 onTap: () {
-                  if (controller.password == "0") {
+                  if (double.parse(controller.password.toString()) < 1) {
                     CustomAlertDialogloader(
                         title: "Amount too Low",
                         message: "Kindly enter the amount you want to withdraw",
@@ -284,7 +287,7 @@ class withdrawPage extends GetView<withdrawController> {
                     controller.makewithdrawal();
                   } else {
                     CustomAlertDialogloader(
-                        title: "Amount too high",
+                        title: "Error",
                         message: "The amount you want to withdraw is greater than your withdrawable point",
                         negativeBtnText: "ok"
                     );

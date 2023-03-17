@@ -31,10 +31,10 @@ class tictoeController extends GetxController{
 
   late int filledBoxesNumber;
   var boxesData = ["","","","","","","","",""].obs;
-  List<String> initialboxesData = ["assets/Images/girl.jpg","assets/Images/logo.png","assets/Images/girl.jpg",
-    "assets/Images/logo.png","assets/Images/logo.png","assets/Images/girl.jpg",
-    "assets/Images/logo.png","assets/Images/girl.jpg",
-    "assets/Images/logo.png"];
+  List<String> initialboxesData = ["assets/Images/wrong.jpg","assets/Images/success.jpg","assets/Images/wrong.jpg",
+    "assets/Images/success.jpg","assets/Images/success.jpg","assets/Images/wrong.jpg",
+    "assets/Images/success.jpg","assets/Images/wrong.jpg",
+    "assets/Images/success.jpg"];
 
   late OverlayEntry overlayEntry1;
   late Timer _timer;
@@ -71,7 +71,7 @@ class tictoeController extends GetxController{
         debugPrint("Filled Numbers is : $filledBoxesNumber , Data on index : $index become ${boxesData[index]}");
         // emit(MoveToAnotherPlayerState());
         await Future.delayed(const Duration(milliseconds: 200));
-        if (boxesData[index] == "assets/Images/logo.png") {
+        if (boxesData[index] == "assets/Images/success.jpg") {
           pointwon +=1;
           CustomAlertDialogloader(
               title: "Point won",

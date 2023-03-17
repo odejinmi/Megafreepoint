@@ -48,6 +48,9 @@ class signupPage extends GetView<signupController> {
                           children: [
                             Row(
                               children: [
+                                const SizedBox(
+                                  width: 15,
+                                ),
                                 GestureDetector(
                                   onTap: () {
                                     Get.offAllNamed('/loginpage');
@@ -125,7 +128,7 @@ class signupPage extends GetView<signupController> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   Text(
                                     "Mobile Number",
@@ -164,7 +167,7 @@ class signupPage extends GetView<signupController> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   Text(
                                     "Name",
@@ -202,7 +205,7 @@ class signupPage extends GetView<signupController> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   Text(
                                     "Password",
@@ -242,7 +245,7 @@ class signupPage extends GetView<signupController> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                               Obx(()=>controller.isloading? loader():MyButton(
                                       buttonText: 'Register',

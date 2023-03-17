@@ -21,7 +21,7 @@ class Addbanks extends GetView<banksController> {
           children: [
             Row(
               children: [
-                const Text("Add wallet Address(s)"),
+                const Text("Add Account"),
                 const Spacer(),
                 IconButton(
                     onPressed: () {

@@ -14,7 +14,7 @@ class banksPage extends GetView<banksController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('banks Page'),
+      appBar: AppBar(title: const Text('My Banks'),
         actions: [
           IconButton(
               onPressed: () {

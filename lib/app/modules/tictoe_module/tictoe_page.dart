@@ -16,7 +16,7 @@ class tictoePage extends GetView<tictoeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('tictoe Page')),
+      appBar: AppBar(title: const Text('My Game')),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: ListView(
@@ -46,7 +46,7 @@ class tictoePage extends GetView<tictoeController> {
                       }else{
                         CustomAlertDialogloader(
                             title: "Error",
-                            message: "kindly click on watch ad button before you click on any of this",
+                            message: "Kindly click on Watch ad button before you click on any of this",
                             negativeBtnText: "ok"
                         );
                       }

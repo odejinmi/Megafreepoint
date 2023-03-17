@@ -10,7 +10,7 @@ class withdrawhistoryPage extends GetView<withdrawhistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('withdrawhistory Page')),
+      appBar: AppBar(title: const Text('Withdraw History Page')),
       body: Container(
         child: Obx(()=>controller.isloading? loader():ListView.builder(
           padding: const EdgeInsets.all(8.0),

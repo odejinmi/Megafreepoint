@@ -28,17 +28,17 @@ class pointhistoryPage extends GetView<pointhistoryController> {
                 ),
                 child: Row(
                   children: [
-                    Image.asset("assets/Images/bankicon.jpeg",height: 50, width: 50,),
+                    Image.asset("assets/Images/tactoelogo.png",height: 50, width: 50,),
                     const SizedBox(width: 15,),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(controller.banklist[position]["game"], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                          Text("Point(s): ${controller.banklist[position]["points"]}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                           const SizedBox(height: 10,),
-                          Text("Previous point: " + controller.banklist[position]["prev_bal"]),
+                          Text("Previous point: " + controller.banklist[position]["prev_bal"]+" New point: " + controller.banklist[position]["next_bal"]),
                           const SizedBox(height: 10,),
-                          Text("New point: " +(controller.banklist[position]["next_bal"])),
+                          Text("Date: " +(controller.banklist[position]["created_at"])),
 
                           const SizedBox(width: 20,),
                         ],

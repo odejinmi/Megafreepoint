@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:megafreepoint/app/components/custom_alert_dialog.dart';
 import 'package:megafreepoint/app/modules/homescreen_module/homescreen_controller.dart';
 import 'package:megafreepoint/app/utils/strings.dart';
 
@@ -253,7 +254,11 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ),
                 FeatureItem(
                   onTap: (){
-                    Get.toNamed("/dayily");
+                    // Get.toNamed("/dayily");
+                    CustomAlertDialogloader(
+                        title: "Info",
+                        message: "Coming soon...",
+                        negativeBtnText: 'Ok');
                   },
                   text: 'Daily login',
                   asset: 'assets/Images/dailywin.webp',
@@ -321,7 +326,11 @@ class HomescreenPage extends GetView<HomescreenController> {
               Get.toNamed("/spinandwin");
             }, child: const Text("Spin & Win")),
             TextButton(onPressed: (){
-              Get.toNamed("/dayily");
+              // Get.toNamed("/dayily");
+              CustomAlertDialogloader(
+                  title: "Info",
+                  message: "Coming soon...",
+                  negativeBtnText: 'Ok');
             }, child: const Text("Daily login")),
             TextButton(onPressed: (){
               Get.toNamed("/withdraw");

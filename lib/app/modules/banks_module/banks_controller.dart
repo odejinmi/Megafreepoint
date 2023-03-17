@@ -15,7 +15,7 @@ class banksController extends GetxController{
   set wallettype(value) => _wallettype.value = value;
   get wallettype => _wallettype.value;
 
-final _wallettypelist = ['Banks', "MCD Wallet"].obs;
+final _wallettypelist = ['Banks'].obs;
   set wallettypelist(value) => _wallettypelist.value = value;
   get wallettypelist => _wallettypelist.value;
 

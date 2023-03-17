@@ -10,7 +10,7 @@ class pointhistoryPage extends GetView<pointhistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('pointhistory Page')),
+      appBar: AppBar(title: const Text('Point History')),
       body: Container(
         child: Obx(()=>controller.isloading? loader():ListView.builder(
           padding: const EdgeInsets.all(8.0),
@@ -38,7 +38,7 @@ class pointhistoryPage extends GetView<pointhistoryController> {
                           const SizedBox(height: 10,),
                           Text("Previous point: " + controller.banklist[position]["prev_bal"]),
                           const SizedBox(height: 10,),
-                          Text("Next point: " +(controller.banklist[position]["next_bal"])),
+                          Text("New point: " +(controller.banklist[position]["next_bal"])),
 
                           const SizedBox(width: 20,),
                         ],

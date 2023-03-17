@@ -14,7 +14,7 @@ class banksPage extends GetView<banksController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Banks'),
+      appBar: AppBar(title: const Text('My Accounts'),
         actions: [
           IconButton(
               onPressed: () {
@@ -48,7 +48,7 @@ class banksPage extends GetView<banksController> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text("BANK", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                           Text("BANK (${controller.banklist[position]["account_number"]})", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                           const SizedBox(height: 10,),
                         Text(controller
                               .banklist[position]["account_name"]),

@@ -11,7 +11,7 @@ class dayilyPage extends GetView<dayilyController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Rewards')),
+      appBar: AppBar(title: Text('Daily Login')),
       // appBar: AppBar(title: Row(
       //   children: [
       //     Text('Rewards'),

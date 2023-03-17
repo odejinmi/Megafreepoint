@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:megafreepoint/app/components/custom_alert_dialog.dart';
 
 import '../../components/custom_alert_dialog_widget.dart';
 import '../../data/provider/Globalvariable.dart';

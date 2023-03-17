@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ng.a5starcompany.megafreepoint">
    <application
-        android:label="Mega Free Point"
+        android:label="5G Tac Toe"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/tactoelogo">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -33,6 +33,6 @@
 
        <meta-data
            android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-6117361441866120~5026343195"/>
+           android:value="ca-app-pub-6117361441866120~1106255385"/>
     </application>
 </manifest>

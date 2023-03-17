@@ -248,34 +248,29 @@ class GoogleProvider extends GetxController {
 
   static String get appId => Platform.isAndroid
       // old
-      // ? 'ca-app-pub-6117361441866120~5829948546'
-      ? 'ca-app-pub-6117361441866120~5026343195'
-      // : 'ca-app-pub-3940256099942544~1458002511';
+      // ? 'ca-app-pub-6117361441866120~5026343195'
+      ? 'ca-app-pub-6117361441866120~1106255385'
       : 'ca-app-pub-1598206053668309~7710581439';
 
   static String get bannerUnitId => Platform.isAndroid
       // test
-      ? 'ca-app-pub-3940256099942544/6300978111'
-      // ? 'ca-app-pub-6117361441866120/3465849519'
-      // : 'ca-app-pub-3940256099942544/2934735716';
+      // ? 'ca-app-pub-3940256099942544/6300978111'
+      ? 'ca-app-pub-6117361441866120/9339968624'
       : 'ca-app-pub-6117361441866120/8143461122';
 
   static String get screenUnitId => Platform.isAndroid
       // test
-      ? 'ca-app-pub-3940256099942544/1033173712'
-      // ? 'ca-app-pub-6117361441866120/8526604500'
-      // : 'ca-app-pub-3940256099942544/4411468910';
+      // ? 'ca-app-pub-3940256099942544/1033173712'
+      ? 'ca-app-pub-6117361441866120/1078335225'
       : 'ca-app-pub-6117361441866120/9779142275';
 
   static String get screenrewardUnitId => Platform.isAndroid
       // test
       ? 'ca-app-pub-3940256099942544/1033173712'
-      // ? 'ca-app-pub-6117361441866120/2592871103'
-      // : 'ca-app-pub-3940256099942544/4411468910';
       : 'ca-app-pub-6117361441866120/7273232580';
 
   static String get videoUnitId => Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/5224354917'
-      // ? 'ca-app-pub-6117361441866120/1279789431'
+      // ? 'ca-app-pub-3940256099942544/5224354917'
+      ? 'ca-app-pub-6117361441866120/3692890274'
       : 'ca-app-pub-6117361441866120/2507991062';
 }

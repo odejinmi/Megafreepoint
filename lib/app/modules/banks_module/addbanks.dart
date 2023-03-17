@@ -53,46 +53,46 @@ class Addbanks extends GetView<banksController> {
               onTap: () {
                 CustomAlertDialogWidgetloader(
                     widget: SizedBox(
-                      height: (40 *
-                          controller.wallettypelist.length)
+                      height: (40 * controller.wallettypelist.length)
                           .toDouble(),
-                      child: ListView.builder(
-                        padding: const EdgeInsets.all(8.0),
-                        itemBuilder: (context, position) {
-                          return GestureDetector(
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 6),
-                              child: Column(
-                                children: [
-                                  Row(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            for(int position = 0; position < controller.wallettypelist.length; position++)
+                              GestureDetector(
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 6),
+                                  child: Column(
                                     children: [
-                                      Text(controller
-                                          .wallettypelist[position]),
-                                      const Spacer(),
-                                      Icon(controller
-                                          .wallettypelist[position] ==
-                                          controller.wallettype
-                                          ? Icons.radio_button_on
-                                          : Icons
-                                          .radio_button_off,
-                                        color: Colors.green,)
+                                      Row(
+                                        children: [
+                                          Text(controller
+                                              .wallettypelist[position]),
+                                          const Spacer(),
+                                          Icon(controller
+                                              .wallettypelist[position] ==
+                                              controller.wallettype
+                                              ? Icons.radio_button_on
+                                              : Icons
+                                              .radio_button_off,
+                                            color: Colors.green,)
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10,),
+                                      const Divider(),
                                     ],
                                   ),
-                                  const SizedBox(height: 10,),
-                                  const Divider(),
-                                ],
-                              ),
-                            ),
-                            onTap: () {
-                              controller.wallettype =
-                              controller.wallettypelist[position];
-                              Get.back();
-                            },
-                          );
-                        },
-                        itemCount: controller.wallettypelist
-                            .length,),
+                                ),
+                                onTap: () {
+                                  controller.wallettype =
+                                  controller.wallettypelist[position];
+                                  Get.back();
+                                },
+                              )
+                          ],
+                        ),
+                      ),
                     )
                 );
               },
@@ -122,48 +122,49 @@ class Addbanks extends GetView<banksController> {
                         height: (40 *
                             controller.banktypelist.length)
                             .toDouble(),
-                        child: ListView.builder(
-                          padding: const EdgeInsets.all(8.0),
-                          itemBuilder: (context, position) {
-                            return GestureDetector(
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 6),
-                                child: Column(
-                                  children: [
-                                    Row(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              for(int position = 0; position < controller.banktypelist.length; position++)
+                                GestureDetector(
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 6),
+                                    child: Column(
                                       children: [
-                                        Expanded(
-                                          child: Text(controller
-                                              .banktypelist[position]["name"]),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(controller
+                                                  .banktypelist[position]["name"]),
+                                            ),
+                                            const SizedBox(width: 20,),
+                                            Icon(controller
+                                                .banktypelist[position]["name"] ==
+                                                controller.banktype
+                                                ? Icons
+                                                .radio_button_on
+                                                : Icons
+                                                .radio_button_off,
+                                              color: Colors.green,)
+                                          ],
                                         ),
-                                        const SizedBox(width: 20,),
-                                        Icon(controller
-                                            .banktypelist[position]["name"] ==
-                                            controller.banktype
-                                            ? Icons
-                                            .radio_button_on
-                                            : Icons
-                                            .radio_button_off,
-                                          color: Colors.green,)
+                                        const SizedBox(height: 10,),
+                                        const Divider(),
                                       ],
                                     ),
-                                    const SizedBox(height: 10,),
-                                    const Divider(),
-                                  ],
-                                ),
-                              ),
-                              onTap: () {
-                                controller.banktype =
-                                controller.banktypelist[position]["name"];
-                                controller.banktypecode =
-                                controller.banktypelist[position]["code"];
-                                Get.back();
-                              },
-                            );
-                          },
-                          itemCount: controller.banktypelist
-                              .length,),
+                                  ),
+                                  onTap: () {
+                                    controller.banktype =
+                                    controller.banktypelist[position]["name"];
+                                    controller.banktypecode =
+                                    controller.banktypelist[position]["code"];
+                                    Get.back();
+                                  },
+                                )
+                            ],
+                          ),
+                        ),
                       );
                     })
                 );

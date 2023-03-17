@@ -71,6 +71,7 @@ get game {
 //   return action ?? action1 ?? "you" ;
   return action1 ?? "you" ;
 }
+
 get points {
   var prefs = GetStorage();
   final String? action1 = prefs.read('points');

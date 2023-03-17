@@ -26,17 +26,11 @@ final _isloading = false.obs;
       isloading = false;
       apicontroller.loginprogress(response,success:(serverdata){
 
-        // Get.snackbar("Success", serverdata);
-        // Get.find<SavedetailsController>().token.value = serverdata['token'];
-        // prefs.write('token', serverdata['token'] ?? "user");
-        // prefs.write('transaction_service', serverdata['transaction_service'] ?? "user");
-        // prefs.write('ultility_service', serverdata['ultility_service'] ?? "user");
-        // prefs.write('wallet', serverdata['balance'] ?? "user");
-        // Get.find<SavedetailsController>().wallet.value = serverdata['balance'];
-        // if (dynamic.isTrue) {
-        //   Get.back(result: true);
-        // } else {
-        //   movin();
+        prefs.write('name', serverdata['name'] ?? "user");
+        prefs.write('email', serverdata['email'] ?? "user");
+        prefs.write('phone', serverdata['phone'] ?? "user");
+        prefs.write('game', serverdata['game'] ?? "user");
+
       });
 
     } catch (error) {

@@ -327,6 +327,9 @@ class HomescreenPage extends GetView<HomescreenController> {
               Get.toNamed("/withdraw");
             }, child: const Text("Withdraw")),
             TextButton(onPressed: (){
+              Get.toNamed("/banks");
+            }, child: const Text("Banks")),
+             TextButton(onPressed: (){
               Get.toNamed("/withdrawhistory");
             }, child: const Text("Withdraw history")),
             TextButton(onPressed: (){

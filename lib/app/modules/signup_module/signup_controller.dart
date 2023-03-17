@@ -73,10 +73,10 @@ class signupController extends GetxController{
         Get.snackbar("Success", "User Registered");
         // Get.find<SavedetailsController>().token.value = serverdata['token'];
         prefs.write('token', serverdata['access_token'] ?? "user");
-        prefs.write('name', serverdata['name'] ?? "user");
-        prefs.write('email', serverdata['email'] ?? "user");
-        prefs.write('phone', serverdata['phone'] ?? "user");
-        prefs.write('game', serverdata['game'] ?? "user");
+        prefs.write('name', serverdata['user']['name'] ?? "user");
+        prefs.write('email', serverdata['user']['email'] ?? "user");
+        prefs.write('phone', serverdata['user']['phone'] ?? "user");
+        prefs.write('game', serverdata['user']['game'] ?? "user");
           Get.offAllNamed("/homescreen");
 
         });

@@ -175,49 +175,50 @@ class withdrawPage extends GetView<withdrawController> {
                             height: (40 *
                                 controller.accountlist.length)
                                 .toDouble(),
-                            child: ListView.builder(
-                              padding: const EdgeInsets.all(8.0),
-                              itemBuilder: (context, position) {
-                                return GestureDetector(
-                                  child: Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 6),
-                                    child: Column(
-                                      children: [
-                                        Row(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  for(int position = 0; position < controller.accountlist.length; position++)
+                                    GestureDetector(
+                                      child: Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 6),
+                                        child: Column(
                                           children: [
-                                            Expanded(
-                                              child: Text(controller
-                                                  .accountlist[position]["account_name"]),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(controller
+                                                      .accountlist[position]["account_name"]),
+                                                ),
+                                                const SizedBox(width: 20,),
+                                                Icon(controller
+                                                    .accountlist[position]["account_name"] ==
+                                                    controller.bankselected
+                                                    ? Icons
+                                                    .radio_button_on
+                                                    : Icons
+                                                    .radio_button_off,
+                                                  color: Colors.green,)
+                                              ],
                                             ),
-                                            const SizedBox(width: 20,),
-                                            Icon(controller
-                                                .accountlist[position]["account_name"] ==
-                                                controller.bankselected
-                                                ? Icons
-                                                .radio_button_on
-                                                : Icons
-                                                .radio_button_off,
-                                              color: Colors.green,)
+                                            const SizedBox(height: 10,),
+                                            const Divider(),
                                           ],
                                         ),
-                                        const SizedBox(height: 10,),
-                                        const Divider(),
-                                      ],
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    controller.bankselected =
-                                    controller
-                                        .accountlist[position]["account_name"];
-                                    controller.bankaccountid =
-                                    controller.accountlist[position]["id"].toString();
-                                    Get.back();
-                                  },
-                                );
-                              },
-                              itemCount: controller.accountlist
-                                  .length,),
+                                      ),
+                                      onTap: () {
+                                        controller.bankselected =
+                                        controller
+                                            .accountlist[position]["account_name"];
+                                        controller.bankaccountid =
+                                            controller.accountlist[position]["id"].toString();
+                                        Get.back();
+                                      },
+                                    )
+                                ],
+                              ),
+                            ),
                           )
                       );
                     },

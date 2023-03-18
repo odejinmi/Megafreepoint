@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 ///
 
 String home = 'Home';
-String appname = "Mega free point";
+String appname = "TacToe";
 
 get token {
   var prefs = GetStorage();

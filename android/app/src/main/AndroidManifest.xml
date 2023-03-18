@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ng.a5starcompany.megafreepoint">
+    package="com.stargames.tactoe">
    <application
         android:label="5G Tac Toe"
         android:name="${applicationName}"

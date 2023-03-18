@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -149,7 +151,7 @@ class HomescreenPage extends GetView<HomescreenController> {
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'Rp',
+                                'Lp',
                                 style: TextStyle(
                                   fontSize: 32.sp,
                                   color: const Color(0xFFa9acad),
@@ -273,6 +275,103 @@ class HomescreenPage extends GetView<HomescreenController> {
               ],
             ),
           ),
+          
+          SizedBox(height: 50,),
+          Row(children: [
+            GestureDetector(
+              onTap: () async {
+                var mail =
+                    "https://5stargames.5starcompany.com.ng/privacy_policy.html";
+                var url = Uri.parse(mail).toString();
+                await launchUrl(Uri.parse(url));
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Card(
+                color: Colors.blue,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: 150,
+                  child: Text(
+                    "Privacy Policy ->",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: () async {
+                var mail =
+                    "https://5stargames.5starcompany.com.ng/terms_conditions.html";
+                var url = Uri.parse(mail).toString();
+                await launchUrl(Uri.parse(url));
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Card(
+                color: Colors.blue,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: 150,
+                  child: Text(
+                    "Terms of Use ->",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],),
+          Row(children: [
+            GestureDetector(
+              onTap: () async {
+                var mail =
+                    "mailto:info@5starcompany.com.ng?subject=Support Needed on 5G Tac Toe";
+                var url = Uri.parse(mail).toString();
+                await launchUrl(Uri.parse(url));
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url));
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Card(
+                color: Colors.black,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: 150,
+                  child: Text(
+                    "Contact Support",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          ],),
+          SizedBox(height: 40,),
+          Platform.isAndroid||Platform.isIOS && Get.find<NetworkProvider>().isonline.isTrue
+          // ? Obx(() => Get.find<AdsProvider>().banner())
+              ?  Get.find<AdsProvider>().banner()
+              : const SizedBox.shrink(),
+          SizedBox(height: 10,),
           Platform.isAndroid||Platform.isIOS && Get.find<NetworkProvider>().isonline.isTrue
           // ? Obx(() => Get.find<AdsProvider>().banner())
               ?  Get.find<AdsProvider>().banner()

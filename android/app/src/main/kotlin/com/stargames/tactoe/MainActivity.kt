@@ -1,4 +1,4 @@
-package com.ng.a5starcompany.megafreepoint
+package com.stargames.tactoe
 
 import io.flutter.embedding.android.FlutterActivity
 

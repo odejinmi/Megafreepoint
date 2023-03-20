@@ -18,11 +18,18 @@ class loginpageController extends GetxController{
   set isloading(value) => _isloading.value = value;
   get isloading => _isloading.value;
 
+  final _obscuretext = true.obs;
+  set obscuretext(value) => _obscuretext.value = value;
+  get obscuretext => _obscuretext.value;
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   var apicontroller = Get.put(ApiProvider());
 
+  void passwordvisibility(){
+    obscuretext = !obscuretext;
+  }
   var prefs = GetStorage();
   void signUserIn() async {
     if (emailController.text.isNotEmpty &&

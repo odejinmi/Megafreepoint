@@ -25,7 +25,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-6117361441866120~4395787806</string>
+	<string>ca-app-pub-6117361441866120~7364116945</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

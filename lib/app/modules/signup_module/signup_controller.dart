@@ -40,6 +40,15 @@ class signupController extends GetxController{
 
   String? _password;
   String? get password => _password;
+
+  final _obscuretext = true.obs;
+  set obscuretext(value) => _obscuretext.value = value;
+  get obscuretext => _obscuretext.value;
+
+  void passwordvisibility(){
+    obscuretext = !obscuretext;
+  }
+
   void setPassword(String? text) {
     _password = text;
     debugPrint("Updated password: $password");

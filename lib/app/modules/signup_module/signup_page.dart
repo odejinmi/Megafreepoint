@@ -225,7 +225,7 @@ class signupPage extends GetView<signupController> {
                                     onSubmitted: (value) {
                                       controller.setPassword(value);
                                     },
-                                    obscureText: true,
+                                    obscureText: controller.obscuretext,
                                     controller: passwordController.value,
                                     cursorColor: HexColor("#4f4f4f"),
                                     decoration: InputDecoration(
@@ -240,6 +240,10 @@ class signupPage extends GetView<signupController> {
                                         borderRadius: BorderRadius.circular(30),
                                         borderSide: BorderSide.none,
                                       ),
+                                      suffixIcon: IconButton(icon:const Icon(Icons.visibility),
+                                        onPressed: (){
+                                          controller.passwordvisibility();
+                                        },),
                                       filled: true,
                                       focusColor: HexColor("#44564a"),
                                     ),
@@ -287,7 +291,7 @@ class signupPage extends GetView<signupController> {
                           ],
                         ),),
                     Transform.translate(
-                        offset: const Offset(0, -300),
+                        offset: const Offset(0, -500),
                         child: Image.asset(
                           'assets/Images/plants2.png',
                           scale: 1.5,

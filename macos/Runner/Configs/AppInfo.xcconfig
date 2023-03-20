@@ -8,7 +8,7 @@
 PRODUCT_NAME = megafreepoint
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.ng.a5starcompany.megafreepoint
+PRODUCT_BUNDLE_IDENTIFIER = com.stargames.tactoe
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.ng.a5starcompany. All rights reserved.

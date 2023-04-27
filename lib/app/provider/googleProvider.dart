@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class GoogleProvider extends GetxController {
     _footerBannerShow = value;
     update();
   }
+
+  final _rewardclick = false.obs;
+  set rewardclick (value)=> _rewardclick.value = value;
+  get rewardclcik => _rewardclick.value;
 
   get videoready => rewardedAd != null;
 
@@ -108,6 +113,9 @@ class GoogleProvider extends GetxController {
           ad.dispose();
           createInterstitialAd();
         },
+        onAdClicked: (InterstitialAd ad) {
+          print("advert clicked");
+        }
       );
 
       intersAd1?.show();
@@ -184,8 +192,9 @@ class GoogleProvider extends GetxController {
       return;//08152836015
     }
     rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (RewardedAd ad) =>
-          print('ad onAdShowedFullScreenContent.'),
+      onAdShowedFullScreenContent: (RewardedAd ad) {
+          print('ad onAdShowedFullScreenContent.');
+          },
       onAdDismissedFullScreenContent: (RewardedAd ad) {
         print('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
@@ -197,12 +206,16 @@ class GoogleProvider extends GetxController {
         ad.dispose();
         _createRewardedAd();
       },
+      onAdClicked: (RewardedAd ad) {
+        print("advert clicked");
+        rewardclick = true;
+      },
     );
 
     rewardedAd!.setImmersiveMode(true);
     rewardedAd!.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
       print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
-      if (rewarded != null) {
+      if (rewarded != null ) {
         rewarded();
       }
     });

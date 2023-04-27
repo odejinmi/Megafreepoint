@@ -21,25 +21,18 @@ class signupController extends GetxController{
 
   static signupController get instance => Get.find();
 
+  final emailController = TextEditingController().obs;
+  final passwordController = TextEditingController().obs;
+  final mobileNumberController = TextEditingController().obs;
+  final nameController = TextEditingController().obs;
+  final collegeNameContoller = TextEditingController().obs;
 
-  String? _name;
-  String? get name => _name;
-  void setName(String? text) {
-    _name = text;
-    debugPrint("Updated name: $name");
-    update();
-  }
-
-  String? _email;
-  String? get email => _email;
-  void setEmail(String? text) {
-    _email = text;
-    debugPrint("Updated email: $email");
-    update();
-  }
-
-  String? _password;
-  String? get password => _password;
+  final _isEmailCorrect = false.obs;
+  set isEmailCorrect (value) => _isEmailCorrect.value = value;
+  get isEmailCorrect => _isEmailCorrect.value;
+  final _formKey = GlobalKey<FormState>().obs;
+  set formKey (value) => _formKey.value = value;
+  get formKey => _formKey.value;
 
   final _obscuretext = true.obs;
   set obscuretext(value) => _obscuretext.value = value;
@@ -49,29 +42,17 @@ class signupController extends GetxController{
     obscuretext = !obscuretext;
   }
 
-  void setPassword(String? text) {
-    _password = text;
-    debugPrint("Updated password: $password");
-    update();
-  }
 
-  String? _mobileNumber;
-  String? get mobileNumber => _mobileNumber;
-  void setMobileNumber(String? text) {
-    _mobileNumber = text;
-    debugPrint("Updated mobileNumber: $mobileNumber");
-    update();
-  }
   var apicontroller = Get.put(ApiProvider());
 
   var prefs = GetStorage();
   void registerUser() async {
     try {
       var body = {
-        "name": name,
-        "email": email,
-        "phone": mobileNumber,
-        "password": password
+        "name": nameController.value,
+        "email": emailController.value,
+        "phone": mobileNumberController.value,
+        "password": passwordController.value
       };
       isloading = true;
       var response = await apicontroller.postdetail("https://5stargames.5starcompany.com.ng/api/register",body);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 /// GetX Template Generator - fb.com/htngu.99
@@ -71,12 +72,17 @@ get game {
 //   return action ?? action1 ?? "you" ;
   return action1 ?? "you" ;
 }
-
+var _points = "".obs;
+set points(value) => _points.value = value;
 get points {
   var prefs = GetStorage();
-  final String? action1 = prefs.read('points');
-  print("action1");
-  print(action1);
+  final String? action1;
+  if(_points.isEmpty) {
+    action1 = prefs.read('points');
+    _points.value = action1??"";
+  } else{
+    action1 = _points.value;
+  }
 
 // // Obtain shared preferences.
 //   final pref = await SharedPreferences.getInstance();

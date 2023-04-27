@@ -71,6 +71,21 @@ class loginpageController extends GetxController{
     //     });
   }
 
+  @override
+  void dispose() {
+    emailController.clear();
+    passwordController.clear();
+    super.dispose();
+  }
+
+  final _isEmailCorrect = false.obs;
+  set isEmailCorrect (value) => _isEmailCorrect.value = value;
+  get isEmailCorrect => _isEmailCorrect.value;
+  final _formKey = GlobalKey<FormState>().obs;
+  set formKey (value) => _formKey.value = value;
+  get formKey => _formKey.value;
+
+
   final _errorMessage = "".obs;
   set errorMessage(value) => _errorMessage.value = value;
   get errorMessage => _errorMessage.value;

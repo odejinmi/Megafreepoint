@@ -13,7 +13,7 @@ class AdsProvider extends GetxController {
   // static var adstate = AdsProvider(initFuture);
 
   var unity = Get.put(UnityProvider(), permanent: true);
-  var adcolony = Get.put(AdcolonyProvider(), permanent: true);
+  // var adcolony = Get.put(AdcolonyProvider(), permanent: true);
   var googleadvert = Get.put(GoogleProvider(), permanent: true);
   var advertshow = 0.obs;
   var advertrewardshow = 0.obs;
@@ -32,12 +32,12 @@ class AdsProvider extends GetxController {
       unityplayed.value = true;
       googleplayed.value = false;
       adcolonyplayed.value = false;
-    } else if (await adcolony.isloaded() && adcolonyplayed.isFalse) {
-      adcolony.show(null);
-      advertshow.value = 2;
-      unityplayed.value = false;
-      googleplayed.value = false;
-      adcolonyplayed.value = true;
+    // } else if (await adcolony.isloaded() && adcolonyplayed.isFalse) {
+    //   adcolony.show(null);
+    //   advertshow.value = 2;
+    //   unityplayed.value = false;
+    //   googleplayed.value = false;
+    //   adcolonyplayed.value = true;
     } else if (googleadvert.intersAd1 != null && googleplayed.isFalse) {
       googleadvert.showAd1();
       advertshow.value = 0;
@@ -69,12 +69,12 @@ class AdsProvider extends GetxController {
       adcolonyplayed.value = false;
       unityplayed.value = false;
       googleplayed.value = true;
-    } else if (await adcolony.isloaded() && adcolonyplayed.isFalse) {
-      adcolony.show(reward);
-      advertrewardshow.value = 3;
-      adcolonyplayed.value = true;
-      unityplayed.value = false;
-      googleplayed.value = false;
+    // } else if (await adcolony.isloaded() && adcolonyplayed.isFalse) {
+    //   adcolony.show(reward);
+    //   advertrewardshow.value = 3;
+    //   adcolonyplayed.value = true;
+    //   unityplayed.value = false;
+    //   googleplayed.value = false;
     } else {
       adcolonyplayed.value = false;
       unityplayed.value = false;

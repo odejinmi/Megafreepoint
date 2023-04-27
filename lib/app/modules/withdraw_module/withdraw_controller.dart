@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../components/custom_alert_dialog.dart';
 import '../../data/provider/api.dart';
+import '../../utils/strings.dart';
 /// GetX Template Generator - fb.com/htngu.99
 ///
 
@@ -63,6 +64,30 @@ class withdrawController extends GetxController{
     }
   }
 
+
+  void fetchbalance() async {
+    try {
+      isloading = true;
+      var response = await apicontroller.gettokendetail("https://5stargames.5starcompany.com.ng/api/user");
+      isloading = false;
+      apicontroller.loginprogress(response,success:(serverdata){
+        prefs.write('name', serverdata['name'] ?? "user");
+        prefs.write('email', serverdata['email'] ?? "user");
+        prefs.write('phone', serverdata['phone'] ?? "user");
+        prefs.write('game', serverdata['game'] ?? "user");
+        prefs.write('points', serverdata['points'] ?? "user");
+        points = serverdata['points'] ?? "";
+
+      });
+
+    } catch (error) {
+      // if (error is FirebaseAuthException) {
+      //   Get.showSnackbar(GetSnackBar(
+      //     message: error.toString(),
+      //   ));
+      // }
+    }
+  }
   var prefs = GetStorage();
 
   void makewithdrawal() async {
@@ -77,6 +102,7 @@ class withdrawController extends GetxController{
       apicontroller.loginprogress(response,success:(serverdata){
 
         prefs.write('points', serverdata['data']["next_bal"].toString());
+        points = serverdata['data']['next_bal'].toString();
         CustomAlertDialogloader(
             title: "Withdraw Successful",
             message: serverdata["message"],
@@ -104,5 +130,6 @@ class withdrawController extends GetxController{
     // TODO: implement onReady
     super.onReady();
     fetchbankaccounts();
+    fetchbalance();
   }
 }

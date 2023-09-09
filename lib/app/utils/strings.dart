@@ -74,7 +74,7 @@ get game {
 
 get points {
   var prefs = GetStorage();
-  final String? action1 = prefs.read('points');
+  final String action1 = prefs.read('points').toString();
   print("action1");
   print(action1);
 

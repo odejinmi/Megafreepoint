@@ -55,7 +55,7 @@ class CustomAlertDialog extends StatelessWidget {
             ),
             child: Text(
               negativeBtnText,
-              style: TextStyle(color: Theme.of(context).accentColor),
+              style: TextStyle(color: Colors.blueAccent),
             ),
             // textColor: Theme.of(context).accentColor,
             onPressed: () {
@@ -82,8 +82,8 @@ class CustomAlertDialog extends StatelessWidget {
               //     ))
             ),
             child: Text(
-              positiveBtnText != null ? positiveBtnText : " ",
-              style: TextStyle(color: Theme.of(context).accentColor),
+              positiveBtnText ?? " ",
+              style: TextStyle(color: Colors.blueAccent),
             ),
             // textColor: Theme.of(context).accentColor,
             onPressed: () {

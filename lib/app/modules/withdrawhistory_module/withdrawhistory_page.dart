@@ -15,8 +15,6 @@ class withdrawhistoryPage extends GetView<withdrawhistoryController> {
         child: Obx(()=>controller.isloading? loader():ListView.builder(
           padding: const EdgeInsets.all(8.0),
           itemBuilder: (context, position) {
-            print(controller
-                .banklist[position]);
             return GestureDetector(
               child: Container(
                 margin: const EdgeInsets.symmetric(

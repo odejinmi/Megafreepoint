@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class GoogleProvider extends GetxController {
   int _numInterstitialLoadAttempts = 0;
   InterstitialAd? intersAd2;
   InterstitialAd? intersAd3;
-  RewardedAd? rewardedAd;
+  RewardedAd? rewardedAd,rewardedAd2,rewardedAd3,rewardedAd4,rewardedAd5;
 
   int _numRewardedLoadAttempts = 0;
   int maxFailedLoadAttempts = 3;
@@ -23,6 +24,10 @@ class GoogleProvider extends GetxController {
     _footerBannerShow = value;
     update();
   }
+
+  final _rewardclick = false.obs;
+  set rewardclick (value)=> _rewardclick.value = value;
+  get rewardclcik => _rewardclick.value;
 
   get videoready => rewardedAd != null;
 
@@ -76,6 +81,10 @@ class GoogleProvider extends GetxController {
     //
     createInterstitialAd();
     _createRewardedAd();
+    _createRewardedAd2();
+    _createRewardedAd3();
+    _createRewardedAd4();
+    _createRewardedAd5();
     loadbanner();
     // adsProvider.intersAd2?.load();
     // adsProvider.intersAd3?.load();
@@ -104,6 +113,9 @@ class GoogleProvider extends GetxController {
           ad.dispose();
           createInterstitialAd();
         },
+        onAdClicked: (InterstitialAd ad) {
+          print("advert clicked");
+        }
       );
 
       intersAd1?.show();
@@ -161,34 +173,253 @@ class GoogleProvider extends GetxController {
   }
 
   void showRewardedAd(Function? rewarded) {
+    if (rewardedAd != null) {
+      showRewardedAd1(rewarded);
+    } else if (rewardedAd2 != null) {
+      showRewardedAd2(rewarded);
+    } else if (rewardedAd3 != null) {
+      showRewardedAd3(rewarded);
+    } else if (rewardedAd4 != null) {
+      showRewardedAd4(rewarded);
+    } else {
+      showRewardedAd5(rewarded);
+    }
+  }
+
+  void showRewardedAd1(Function? rewarded) {
     if (rewardedAd == null) {
       print('Warning: attempt to show rewarded before loaded.');
       return;//08152836015
     }
     rewardedAd!.fullScreenContentCallback = FullScreenContentCallback(
-      onAdShowedFullScreenContent: (RewardedAd ad) =>
-          print('ad onAdShowedFullScreenContent.'),
+      onAdShowedFullScreenContent: (RewardedAd ad) {
+          print('ad onAdShowedFullScreenContent.');
+          },
       onAdDismissedFullScreenContent: (RewardedAd ad) {
         print('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
         _createRewardedAd();
-        if (rewarded != null) {
-          rewarded();
-        }
+
       },
       onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
         print('$ad onAdFailedToShowFullScreenContent: $error');
         ad.dispose();
         _createRewardedAd();
       },
+      onAdClicked: (RewardedAd ad) {
+        print("advert clicked");
+        rewardclick = true;
+      },
     );
 
     rewardedAd!.setImmersiveMode(true);
     rewardedAd!.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
       print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
-
+      if (rewarded != null ) {
+        rewarded();
+      }
     });
     rewardedAd = null;
+  }
+
+  void _createRewardedAd2() {
+    RewardedAd.load(
+        adUnitId: videoUnitId2,
+        // request: request,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (RewardedAd ad) {
+            rewardedAd2 = ad;
+            _numRewardedLoadAttempts = 0;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            rewardedAd2 = null;
+            _numRewardedLoadAttempts += 1;
+            if (_numRewardedLoadAttempts < maxFailedLoadAttempts) {
+              _createRewardedAd2();
+            }
+          },
+        ));
+  }
+
+  void showRewardedAd2(Function? rewarded) {
+    if (rewardedAd2 == null) {
+      print('Warning: attempt to show rewarded before loaded.');
+      return;//08152836015
+    }
+    rewardedAd2!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (RewardedAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (RewardedAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        _createRewardedAd2();
+      },
+      onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        _createRewardedAd2();
+      },
+    );
+
+    rewardedAd2!.setImmersiveMode(true);
+    rewardedAd2!.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+      if (rewarded != null) {
+        rewarded();
+      }
+    });
+    rewardedAd2 = null;
+  }
+
+  void _createRewardedAd3() {
+    RewardedAd.load(
+        adUnitId: videoUnitId3,
+        // request: request,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (RewardedAd ad) {
+            rewardedAd3 = ad;
+            _numRewardedLoadAttempts = 0;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            rewardedAd3 = null;
+            _numRewardedLoadAttempts += 1;
+            if (_numRewardedLoadAttempts < maxFailedLoadAttempts) {
+              _createRewardedAd3();
+            }
+          },
+        ));
+  }
+
+  void showRewardedAd3(Function? rewarded) {
+    if (rewardedAd3 == null) {
+      print('Warning: attempt to show rewarded before loaded.');
+      return;//08152836015
+    }
+    rewardedAd3!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (RewardedAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (RewardedAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        _createRewardedAd3();
+      },
+      onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        _createRewardedAd3();
+      },
+    );
+
+    rewardedAd3!.setImmersiveMode(true);
+    rewardedAd3!.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+      if (rewarded != null) {
+        rewarded();
+      }
+    });
+    rewardedAd3 = null;
+  }
+
+  void _createRewardedAd4() {
+    RewardedAd.load(
+        adUnitId: videoUnitId4,
+        // request: request,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (RewardedAd ad) {
+            rewardedAd4 = ad;
+            _numRewardedLoadAttempts = 0;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            rewardedAd4 = null;
+            _numRewardedLoadAttempts += 1;
+            if (_numRewardedLoadAttempts < maxFailedLoadAttempts) {
+              _createRewardedAd4();
+            }
+          },
+        ));
+  }
+
+  void showRewardedAd4(Function? rewarded) {
+    if (rewardedAd4 == null) {
+      print('Warning: attempt to show rewarded before loaded.');
+      return;//08152836015
+    }
+    rewardedAd4!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (RewardedAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (RewardedAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        _createRewardedAd4();
+      },
+      onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        _createRewardedAd4();
+      },
+    );
+
+    rewardedAd4!.setImmersiveMode(true);
+    rewardedAd4!.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+      if (rewarded != null) {
+        rewarded();
+      }
+    });
+    rewardedAd4 = null;
+  }
+
+  void _createRewardedAd5() {
+    RewardedAd.load(
+        adUnitId: videoUnitId5,
+        // request: request,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          onAdLoaded: (RewardedAd ad) {
+            rewardedAd5 = ad;
+            _numRewardedLoadAttempts = 0;
+          },
+          onAdFailedToLoad: (LoadAdError error) {
+            rewardedAd5 = null;
+            _numRewardedLoadAttempts += 1;
+            if (_numRewardedLoadAttempts < maxFailedLoadAttempts) {
+              _createRewardedAd5();
+            }
+          },
+        ));
+  }
+
+  void showRewardedAd5(Function? rewarded) {
+    if (rewardedAd5 == null) {
+      print('Warning: attempt to show rewarded before loaded.');
+      return;//08152836015
+    }
+    rewardedAd5!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (RewardedAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (RewardedAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        _createRewardedAd5();
+      },
+      onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        _createRewardedAd5();
+      },
+    );
+
+    rewardedAd5!.setImmersiveMode(true);
+    rewardedAd5!.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+      if (rewarded != null) {
+        rewarded();
+      }
+    });
+    rewardedAd5 = null;
   }
 
   void loadbanner(){
@@ -256,13 +487,13 @@ class GoogleProvider extends GetxController {
       // test
       // ? 'ca-app-pub-3940256099942544/6300978111'
       ? 'ca-app-pub-6117361441866120/9339968624'
-      : 'ca-app-pub-6117361441866120/8143461122';
+      : 'ca-app-pub-6117361441866120/4727426885';
 
   static String get screenUnitId => Platform.isAndroid
       // test
       // ? 'ca-app-pub-3940256099942544/1033173712'
       ? 'ca-app-pub-6117361441866120/1078335225'
-      : 'ca-app-pub-6117361441866120/9779142275';
+      : 'ca-app-pub-6117361441866120/2111790264';
 
   static String get screenrewardUnitId => Platform.isAndroid
       // test
@@ -272,5 +503,26 @@ class GoogleProvider extends GetxController {
   static String get videoUnitId => Platform.isAndroid
       // ? 'ca-app-pub-3940256099942544/5224354917'
       ? 'ca-app-pub-6117361441866120/3692890274'
-      : 'ca-app-pub-6117361441866120/2507991062';
+      : 'ca-app-pub-6117361441866120/7176414688';
+
+  static String get videoUnitId2 => Platform.isAndroid
+      // ? 'ca-app-pub-3940256099942544/5224354917'
+      ? 'ca-app-pub-6117361441866120/3017677823'
+      : 'ca-app-pub-6117361441866120/4550251341';
+
+  static String get videoUnitId3 => Platform.isAndroid
+      // ? 'ca-app-pub-3940256099942544/5224354917'
+      ? 'ca-app-pub-6117361441866120/5013285775'
+      : 'ca-app-pub-6117361441866120/8353194161';
+
+  static String get videoUnitId4 => Platform.isAndroid
+      // ? 'ca-app-pub-3940256099942544/5224354917'
+      ? 'ca-app-pub-6117361441866120/2798185970'
+      : 'ca-app-pub-6117361441866120/9223993527';
+
+  static String get videoUnitId5 => Platform.isAndroid
+      // ? 'ca-app-pub-3940256099942544/5224354917'
+      ? 'ca-app-pub-6117361441866120/5779572537'
+      : 'ca-app-pub-6117361441866120/3971666841';
+
 }

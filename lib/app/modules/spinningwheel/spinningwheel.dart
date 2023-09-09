@@ -64,10 +64,10 @@ class _SpinningwheelState extends State<Spinningwheel> {
     debugPrint("prefs.read('numberplayed')");
     debugPrint(gm_advt.value.toString());
     debugPrint(prefs.read('numberplayed'));
-    if (gm_advt.value < 3) {
-      gm_advt.value += 1;
-      handleRoll1();
-    } else {
+    // if (gm_advt.value < 3) {
+    //   gm_advt.value += 1;
+    //   handleRoll1();
+    // } else {
       gm_advt.value = 0;
       if (prefs.read('numberplayed') == 5) {
         CustomAlertDialogloader(
@@ -84,7 +84,7 @@ class _SpinningwheelState extends State<Spinningwheel> {
         prefs.write('numberplayed', numberplayed.value);
         prefs.write('timeplayed', DateTime.now());
       }
-    }
+    // }
   }
 
   var gm_advt = 0.obs;
@@ -172,7 +172,7 @@ class _SpinningwheelState extends State<Spinningwheel> {
           ),
           const SizedBox(height: 10,),
           Obx(() =>
-          controller.items.isEmpty ? const SizedBox.shrink() : spined.isFalse
+          controller.items.isEmpty  && !Get.find<AdsProvider>().isvideoready? const SizedBox.shrink() : spined.isFalse
               ? RollButtonWithPreview(
             isAnimating: isAnimating.value,
             selected: selectedIndex,

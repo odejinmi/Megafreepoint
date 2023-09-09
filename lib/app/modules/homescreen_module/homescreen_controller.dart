@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:megafreepoint/app/provider/adsProvider.dart';
+import 'package:megafreepoint/app/utils/strings.dart';
 
+import '../../data/provider/Globalvariable.dart';
 import '../../data/provider/api.dart';
 /// GetX Template Generator - fb.com/htngu.99
 ///
@@ -18,6 +23,7 @@ final _isloading = false.obs;
 
   var prefs = GetStorage();
   var apicontroller = Get.put(ApiProvider());
+  var advert = Get.put(AdsProvider());
 
   void fetchbankaccounts() async {
     try {
@@ -25,11 +31,12 @@ final _isloading = false.obs;
       var response = await apicontroller.gettokendetail("https://5stargames.5starcompany.com.ng/api/user");
       isloading = false;
       apicontroller.loginprogress(response,success:(serverdata){
-
         prefs.write('name', serverdata['name'] ?? "user");
         prefs.write('email', serverdata['email'] ?? "user");
         prefs.write('phone', serverdata['phone'] ?? "user");
         prefs.write('game', serverdata['game'] ?? "user");
+        prefs.write('points', serverdata['points'] ?? "user");
+        points = serverdata['points'] ?? "";
 
       });
 
@@ -49,13 +56,19 @@ final _isloading = false.obs;
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    fetchbankaccounts();
+    // fetchbankaccounts();
   }
+
   @override
   void onReady() {
     // TODO: implement onReady
     super.onReady();
-    // fetchbankaccounts();
+    fetchbankaccounts();
+    // Timer.periodic(const Duration(seconds: 31), (timer) {
+    //   // this function will be called every second
+    //   print('Hello');
+    //   advert.showreawardads((){addpoint();});
+    // });
   }
 
 }

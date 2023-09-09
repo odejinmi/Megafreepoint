@@ -35,7 +35,7 @@ class tictoePage extends GetView<tictoeController> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
+                    mainAxisSpacing: 10,
                     childAspectRatio: 0.8),
                 itemBuilder: (context, index) {
                   return InkWell(

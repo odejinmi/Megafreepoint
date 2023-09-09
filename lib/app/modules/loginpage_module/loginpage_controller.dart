@@ -18,11 +18,18 @@ class loginpageController extends GetxController{
   set isloading(value) => _isloading.value = value;
   get isloading => _isloading.value;
 
+  final _obscuretext = true.obs;
+  set obscuretext(value) => _obscuretext.value = value;
+  get obscuretext => _obscuretext.value;
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   var apicontroller = Get.put(ApiProvider());
 
+  void passwordvisibility(){
+    obscuretext = !obscuretext;
+  }
   var prefs = GetStorage();
   void signUserIn() async {
     if (emailController.text.isNotEmpty &&
@@ -63,6 +70,21 @@ class loginpageController extends GetxController{
     //       );
     //     });
   }
+
+  @override
+  void dispose() {
+    emailController.clear();
+    passwordController.clear();
+    super.dispose();
+  }
+
+  final _isEmailCorrect = false.obs;
+  set isEmailCorrect (value) => _isEmailCorrect.value = value;
+  get isEmailCorrect => _isEmailCorrect.value;
+  final _formKey = GlobalKey<FormState>().obs;
+  set formKey (value) => _formKey.value = value;
+  get formKey => _formKey.value;
+
 
   final _errorMessage = "".obs;
   set errorMessage(value) => _errorMessage.value = value;

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../../utils/strings.dart';
 import 'api.dart';
 
 var prefs = GetStorage();

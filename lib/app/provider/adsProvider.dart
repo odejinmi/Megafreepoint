@@ -1,10 +1,9 @@
+import 'dart:io';
+
+import 'package:advert/advert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'banner_admob.dart';
-import 'adcolonyProvider.dart';
-import 'googleProvider.dart';
-import 'unityprovider.dart';
 
 class AdsProvider extends GetxController {
   // Future<InitializationStatus> initialization;
@@ -12,100 +11,56 @@ class AdsProvider extends GetxController {
   // static var initFuture = MobileAds.instance.initialize();
   // static var adstate = AdsProvider(initFuture);
 
-  var unity = Get.put(UnityProvider(), permanent: true);
-  // var adcolony = Get.put(AdcolonyProvider(), permanent: true);
-  var googleadvert = Get.put(GoogleProvider(), permanent: true);
-  var advertshow = 0.obs;
-  var advertrewardshow = 0.obs;
-  var unityplayed = false.obs;
-  var googleplayed = false.obs;
-  var adcolonyplayed = false.obs;
-  var unitybannerplayed = false.obs;
-  var googlebannerplayed = false.obs;
-  var adcolonybannerplayed = false.obs;
+  final _advertPlugin = Advert();
+  final banneradUnitId = Platform.isAndroid
+      ? ['ca-app-pub-6117361441866120/3708316699']
+      : ['ca-app-pub-6117361441866120/4722833700'];
 
-  showads() async {
-    if (unity.placements[AdManager.rewardedVideoAdPlacementId] == true &&
-        unityplayed.isFalse) {
-      unity.showAd(AdManager.rewardedVideoAdPlacementId, null);
-      advertshow.value = 1;
-      unityplayed.value = true;
-      googleplayed.value = false;
-      adcolonyplayed.value = false;
-    // } else if (await adcolony.isloaded() && adcolonyplayed.isFalse) {
-    //   adcolony.show(null);
-    //   advertshow.value = 2;
-    //   unityplayed.value = false;
-    //   googleplayed.value = false;
-    //   adcolonyplayed.value = true;
-    } else if (googleadvert.intersAd1 != null && googleplayed.isFalse) {
-      googleadvert.showAd1();
-      advertshow.value = 0;
-      adcolonyplayed.value = false;
-      unityplayed.value = false;
-      googleplayed.value = true;
-    } else {
-      googleadvert.createInterstitialAd();
-      unity.loadAds();
-      adcolonyplayed.value = false;
-      unityplayed.value = false;
-      googleplayed.value = false;
-      advertshow.value = 0;
-      showads();
-    }
+  get screenUnitId => Platform.isAndroid
+      ? ['ca-app-pub-6117361441866120/1078335225']
+      : ['ca-app-pub-6117361441866120/2111790264'];
+
+  final  _nativeadUnitId = Platform.isAndroid
+      ? ['ca-app-pub-6117361441866120/1183902113']
+      : ['ca-app-pub-6117361441866120/7174595397'];
+
+  final videoUnitId = Platform.isAndroid
+      ? ['ca-app-pub-6117361441866120/3692890274','ca-app-pub-6117361441866120/3017677823',
+        'ca-app-pub-6117361441866120/5013285775','ca-app-pub-6117361441866120/2798185970',
+        'ca-app-pub-6117361441866120/5779572537']
+      : ['ca-app-pub-6117361441866120/7176414688','ca-app-pub-6117361441866120/4550251341',
+    'ca-app-pub-6117361441866120/8353194161','ca-app-pub-6117361441866120/9223993527',
+    'ca-app-pub-6117361441866120/3971666841'];
+
+  // TODO: replace this test ad unit with your own ad unit.
+  final adUnitId = Platform.isAndroid
+      ? ['ca-app-pub-6117361441866120/3436743553','ca-app-pub-6117361441866120/4613296063',
+    'ca-app-pub-6117361441866120/4942321320','ca-app-pub-6117361441866120/5020490174',
+    'ca-app-pub-6117361441866120/3108642706']
+      : ['ca-app-pub-6117361441866120/9800758737','ca-app-pub-6117361441866120/7481688904',
+    'ca-app-pub-6117361441866120/3542443896','ca-app-pub-6117361441866120/5653601913',
+    'ca-app-pub-6117361441866120/5447865581'];
+
+  Advertresponse showads() {
+    return _advertPlugin.adsProv.showads();
   }
 
-  Future<void> showreawardads(Function reward) async {
-    if (unity.placements[AdManager.rewardedVideoAdPlacementId] == true &&
-        unityplayed.isFalse) {
-      unity.showAd(AdManager.rewardedVideoAdPlacementId, reward);
-      advertrewardshow.value = 1;
-      adcolonyplayed.value = false;
-      unityplayed.value = true;
-      googleplayed.value = false;
-    } else if (googleadvert.rewardedAd != null && googleplayed.isFalse) {
-      googleadvert.showRewardedAd(reward);
-      advertrewardshow.value = 2;
-      adcolonyplayed.value = false;
-      unityplayed.value = false;
-      googleplayed.value = true;
-    // } else if (await adcolony.isloaded() && adcolonyplayed.isFalse) {
-    //   adcolony.show(reward);
-    //   advertrewardshow.value = 3;
-    //   adcolonyplayed.value = true;
-    //   unityplayed.value = false;
-    //   googleplayed.value = false;
-    } else {
-      adcolonyplayed.value = false;
-      unityplayed.value = false;
-      googleplayed.value = false;
-      advertrewardshow.value = 0;
-      showreawardads(reward);
-    }
+  Widget shownativeads() {
+    return  _advertPlugin.adsProv.shownativeads();
   }
 
-  bool isbannerready()=>googleadvert.bannerReady.value;
-  get isvideoready => googleadvert.videoready ||unity.rewardvideoloaded;
-  void removebanner(){
-    googleadvert.removeBanner();
+  Advertresponse showreawardads(Function reward) {
+    return _advertPlugin.adsProv.showreawardads(reward);
   }
+
+  get isvideoready => _advertPlugin.adsProv.isvideoready;
 
   Widget banner() {
-    // return googleadvert.adWidget();
-    return BannerAdmob();
-    switch (slideIndex.value) {
-      case 0:
-        return unity.adWidget();
-      // case 1:
-      //   return adcolony.banner();
-      case 1:
-        return BannerAdmob();
-      default:
-        return SizedBox.shrink();
-    }
+    return _advertPlugin.adsProv.banner();
+    // return Container();
   }
 
-  var slideIndex = 0.obs;
+  var slideIndex = 1.obs;
 
   void counting() {
     Future.delayed(const Duration(seconds: 30), () async {
@@ -139,6 +94,13 @@ class AdsProvider extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    counting();
+    Googlemodel googlemodel = Googlemodel()
+      ..banneradadUnitId = banneradUnitId
+      ..nativeadUnitId = _nativeadUnitId
+      ..adUnitId = adUnitId
+      ..videoUnitId = videoUnitId
+      ..screenUnitId = screenUnitId;
+    _advertPlugin.initialize(Adsmodel(googlemodel: googlemodel));
+    // counting();
   }
 }

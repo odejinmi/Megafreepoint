@@ -21,8 +21,9 @@ class CustomAlertDialog extends StatelessWidget {
     this.negativeBtnText = "",
     this.onPostivePressed,
     this.onNegativePressed,
-  })  : assert(bgColor != null),
-        assert(circularBorderRadius != null);
+  })  ;
+      // : assert(bgColor != null),
+      //   assert(circularBorderRadius != null);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class CustomAlertDialog extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       content: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         child: Text(message),
       ),
       backgroundColor: bgColor,
@@ -55,6 +56,7 @@ class CustomAlertDialog extends StatelessWidget {
             ),
             child: Text(
               negativeBtnText,
+              // style: TextStyle(color: Theme.of(context).canvasColor),
               style: TextStyle(color: Colors.blueAccent),
             ),
             // textColor: Theme.of(context).accentColor,
@@ -81,6 +83,8 @@ class CustomAlertDialog extends StatelessWidget {
               //       // side: BorderSide(color: Colors.red)
               //     ))
             ),
+            // child: Text( positiveBtnText,
+            //   style: TextStyle(color: Theme.of(context).canvasColor),
             child: Text(
               positiveBtnText ?? " ",
               style: TextStyle(color: Colors.blueAccent),
@@ -99,17 +103,17 @@ class CustomAlertDialog extends StatelessWidget {
 }
 
 CustomAlertDialogloader(
-    {String? title,
-    String? message,
-    String? negativeBtnText,
+    {required String title,
+    required String message,
+    required String negativeBtnText,
     String positiveBtnText = "",
     Function? onPostivePressed,
     Function? onNegativePressed}) {
   Get.dialog(CustomAlertDialog(
-      title: title!,
-      message: message!,
+      title: title,
+      message: message,
       onPostivePressed: onPostivePressed,
       positiveBtnText: positiveBtnText,
       onNegativePressed: onNegativePressed,
-      negativeBtnText: negativeBtnText ?? ""));
+      negativeBtnText: negativeBtnText));
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:advert/advert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-nb
+
 
 class AdsProvider extends GetxController {
   // Future<InitializationStatus> initialization;

@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.0.0'
+  sdk: '>=3.0.2 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,22 +36,22 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   get: ^4.6.5
-  google_fonts: ^4.0.4
+  google_fonts: ^5.1.0
   hexcolor: ^3.0.1
   email_validator: ^2.1.17
-  flutter_screenutil: ^5.7.0
+  flutter_screenutil: ^5.8.4
   auto_size_text: ^3.0.0
-#  adcolony_flutter: ^1.7.0
-  google_mobile_ads: ^3.0.0
-  unity_ads_plugin: ^0.3.8
+  advert:
+    path: ../advert
+  #    git: https://github.com/odejinmi/advert.git
   get_storage: ^2.1.1
-  connectivity_plus: ^3.0.5
+  connectivity_plus: ^4.0.1
   flutter_hooks: ^0.18.6
-  flutter_fortune_wheel: ^1.2.0
+  flutter_fortune_wheel: ^1.2.1
   loader_overlay: ^2.2.0
-  flutter_spinkit: ^5.1.0
-  url_launcher: ^6.1.10
-  lottie: ^2.3.2
+  flutter_spinkit: ^5.2.0
+  url_launcher: ^6.1.11
+  lottie: ^2.4.0
   validators: ^3.0.0
 
 dev_dependencies:

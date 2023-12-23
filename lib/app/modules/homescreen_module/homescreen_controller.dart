@@ -59,16 +59,26 @@ final _isloading = false.obs;
     // fetchbankaccounts();
   }
 
+  Timer? _timer;
   @override
   void onReady() {
     // TODO: implement onReady
     super.onReady();
     fetchbankaccounts();
-    // Timer.periodic(const Duration(seconds: 31), (timer) {
-    //   // this function will be called every second
-    //   print('Hello');
-    //   advert.showreawardads((){addpoint();});
-    // });
+    _timer = Timer.periodic(const Duration(seconds: 31), (timer) {
+      // this function will be called every second
+      print('Hello');
+      // advert.showreawardads((){addpoint();});
+      // advert.shownativeads();
+    });
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+  }
 }

@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  advert
   connectivity_plus
   url_launcher_windows
 )

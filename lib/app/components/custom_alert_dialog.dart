@@ -56,7 +56,8 @@ class CustomAlertDialog extends StatelessWidget {
             ),
             child: Text(
               negativeBtnText,
-              style: TextStyle(color: Theme.of(context).canvasColor),
+              // style: TextStyle(color: Theme.of(context).canvasColor),
+              style: TextStyle(color: Colors.blueAccent),
             ),
             // textColor: Theme.of(context).accentColor,
             onPressed: () {
@@ -82,8 +83,11 @@ class CustomAlertDialog extends StatelessWidget {
               //       // side: BorderSide(color: Colors.red)
               //     ))
             ),
-            child: Text( positiveBtnText,
-              style: TextStyle(color: Theme.of(context).canvasColor),
+            // child: Text( positiveBtnText,
+            //   style: TextStyle(color: Theme.of(context).canvasColor),
+            child: Text(
+              positiveBtnText ?? " ",
+              style: TextStyle(color: Colors.blueAccent),
             ),
             // textColor: Theme.of(context).accentColor,
             onPressed: () {

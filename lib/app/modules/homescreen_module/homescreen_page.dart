@@ -13,6 +13,14 @@ import 'package:megafreepoint/app/utils/strings.dart';
 
 import '../../provider/adsProvider.dart';
 import '../../provider/networkProvider.dart';
+import '../tictoe_module/brick_breaker_page.dart';
+import '../tictoe_module/dot_page.dart';
+import '../tictoe_module/flapping_bird_page.dart';
+import '../tictoe_module/fruitninja_page.dart';
+import '../tictoe_module/g2048.dart';
+import '../tictoe_module/memory_match_page.dart';
+import '../tictoe_module/pong_page.dart';
+import '../tictoe_module/whack_page.dart';
 import 'feature_item.dart';
 /// GetX Template Generator - fb.com/htngu.99
 ///
@@ -249,6 +257,95 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ),
                 FeatureItem(
                   onTap: () {
+                    Get.to(()=>FruitNinja());
+                  },
+                  text: 'Fruit Ninja',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>WhackAMole());
+                  },
+                  text: 'WhackAMole',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>Game2048());
+                  },
+                  text: '2048',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20,),
+          Container(
+            // height: 775.w,
+            width: 1.sw,
+            decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
+                )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>Pong());
+                  },
+                  text: 'Pong',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>FlappyBird());
+                  },
+                  text: 'FlappyBird',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>TapTheDot());
+                  },
+                  text: 'TapTheDot',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>BrickBreaker());
+                  },
+                  text: 'BrickBreaker',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20,),
+          Container(
+            // height: 775.w,
+            width: 1.sw,
+            decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
+                )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                FeatureItem(
+                  onTap: () {
+                    Get.to(()=>MemoryMatch());
+                  },
+                  text: 'Memory Match',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+
+                FeatureItem(
+                  onTap: () {
                     Get.toNamed("/spinandwin");
                   },
                   text: 'Spin & Win',
@@ -275,7 +372,7 @@ class HomescreenPage extends GetView<HomescreenController> {
               ],
             ),
           ),
-          
+
           SizedBox(height: 50,),
           Row(children: [
             GestureDetector(

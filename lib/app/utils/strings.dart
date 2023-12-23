@@ -76,9 +76,9 @@ var _points = "".obs;
 set points(value) => _points.value = value;
 get points {
   var prefs = GetStorage();
-  final String? action1;
+  final String action1;
   if(_points.isEmpty) {
-    action1 = prefs.read('points');
+    action1 = prefs.read('points').toString();
     _points.value = action1??"";
   } else{
     action1 = _points.value;

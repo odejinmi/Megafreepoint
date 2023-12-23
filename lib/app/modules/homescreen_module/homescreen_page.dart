@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:url_launcher/url_launcher.dart';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,24 +8,22 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:megafreepoint/app/components/custom_alert_dialog.dart';
 import 'package:megafreepoint/app/modules/homescreen_module/homescreen_controller.dart';
 import 'package:megafreepoint/app/utils/strings.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../provider/adsProvider.dart';
 import '../../provider/networkProvider.dart';
 import '../tictoe_module/brick_breaker_page.dart';
 import '../tictoe_module/dot_page.dart';
-import '../tictoe_module/flapping_bird_page.dart';
-import '../tictoe_module/fruitninja_page.dart';
-import '../tictoe_module/g2048.dart';
 import '../tictoe_module/memory_match_page.dart';
 import '../tictoe_module/pong_page.dart';
 import '../tictoe_module/whack_page.dart';
 import 'feature_item.dart';
+
 /// GetX Template Generator - fb.com/htngu.99
 ///
 
 class HomescreenPage extends GetView<HomescreenController> {
   // final user = FirebaseAuth.instance.currentUser!;
-
 
   ScrollController? _scrollController;
   @override
@@ -37,7 +33,8 @@ class HomescreenPage extends GetView<HomescreenController> {
       appBar: AppBar(
         title: const Text("HomePage"),
         actions: [
-          IconButton(onPressed: controller.signUserOut, icon: const Icon(Icons.logout))
+          IconButton(
+              onPressed: controller.signUserOut, icon: const Icon(Icons.logout))
         ],
       ),
       body: ListView(
@@ -141,8 +138,10 @@ class HomescreenPage extends GetView<HomescreenController> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border(
-                        bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
-                        right: BorderSide(width: 3.w, color: const Color(0xFFf7f7f7)),
+                        bottom: BorderSide(
+                            width: 6.w, color: const Color(0xFFf7f7f7)),
+                        right: BorderSide(
+                            width: 3.w, color: const Color(0xFFf7f7f7)),
                       )),
                   child: Row(
                     children: [
@@ -201,8 +200,10 @@ class HomescreenPage extends GetView<HomescreenController> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border(
-                        bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
-                        left: BorderSide(width: 3.w, color: const Color(0xFFf7f7f7)),
+                        bottom: BorderSide(
+                            width: 6.w, color: const Color(0xFFf7f7f7)),
+                        left: BorderSide(
+                            width: 3.w, color: const Color(0xFFf7f7f7)),
                       )),
                   child: Row(
                     children: [
@@ -237,14 +238,16 @@ class HomescreenPage extends GetView<HomescreenController> {
               ),
             ],
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Container(
             // height: 775.w,
             width: 1.sw,
             decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
-                )),
+              bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
+            )),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -257,93 +260,85 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(()=>FruitNinja());
-                  },
-                  text: 'Fruit Ninja',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-                FeatureItem(
-                  onTap: () {
-                    Get.to(()=>WhackAMole());
+                    Get.to(() => WhackAMole());
                   },
                   text: 'WhackAMole',
                   asset: 'assets/Images/tic_tac_toe.png',
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(()=>Game2048());
-                  },
-                  text: '2048',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20,),
-          Container(
-            // height: 775.w,
-            width: 1.sw,
-            decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
-                )),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                FeatureItem(
-                  onTap: () {
-                    Get.to(()=>Pong());
+                    Get.to(() => Pong());
                   },
                   text: 'Pong',
                   asset: 'assets/Images/tic_tac_toe.png',
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(()=>FlappyBird());
+                    Get.to(() => TapTheDot());
                   },
-                  text: 'FlappyBird',
+                  text: 'TapTheDot',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            // height: 775.w,
+            width: 1.sw,
+            decoration: BoxDecoration(
+                border: Border(
+              bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
+            )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FeatureItem(
+                  onTap: () {
+                    Get.to(() => Pong());
+                  },
+                  text: 'Pong',
                   asset: 'assets/Images/tic_tac_toe.png',
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(()=>TapTheDot());
+                    Get.to(() => TapTheDot());
                   },
                   text: 'TapTheDot',
                   asset: 'assets/Images/tic_tac_toe.png',
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(()=>BrickBreaker());
+                    Get.to(() => BrickBreaker());
                   },
                   text: 'BrickBreaker',
+                  asset: 'assets/Images/tic_tac_toe.png',
+                ),
+                FeatureItem(
+                  onTap: () {
+                    Get.to(() => MemoryMatch());
+                  },
+                  text: 'Memory Match',
                   asset: 'assets/Images/tic_tac_toe.png',
                 ),
               ],
             ),
           ),
-
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Container(
             // height: 775.w,
             width: 1.sw,
             decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
-                )),
+              bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
+            )),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-                FeatureItem(
-                  onTap: () {
-                    Get.to(()=>MemoryMatch());
-                  },
-                  text: 'Memory Match',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-
                 FeatureItem(
                   onTap: () {
                     Get.toNamed("/spinandwin");
@@ -352,7 +347,7 @@ class HomescreenPage extends GetView<HomescreenController> {
                   asset: 'assets/Images/spin&win.png',
                 ),
                 FeatureItem(
-                  onTap: (){
+                  onTap: () {
                     // Get.toNamed("/dayily");
                     CustomAlertDialogloader(
                         title: "Info",
@@ -363,7 +358,7 @@ class HomescreenPage extends GetView<HomescreenController> {
                   asset: 'assets/Images/dailywin.webp',
                 ),
                 FeatureItem(
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed("/withdraw");
                   },
                   text: 'Withdraw',
@@ -372,106 +367,117 @@ class HomescreenPage extends GetView<HomescreenController> {
               ],
             ),
           ),
-
-          SizedBox(height: 50,),
-          Row(children: [
-            GestureDetector(
-              onTap: () async {
-                var mail =
-                    "https://5stargames.5starcompany.com.ng/privacy_policy.html";
-                var url = Uri.parse(mail).toString();
-                await launchUrl(Uri.parse(url));
-                if (await canLaunchUrl(Uri.parse(url))) {
+          SizedBox(
+            height: 50,
+          ),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  var mail =
+                      "https://5stargames.5starcompany.com.ng/privacy_policy.html";
+                  var url = Uri.parse(mail).toString();
                   await launchUrl(Uri.parse(url));
-                } else {
-                  throw 'Could not launch $url';
-                }
-              },
-              child: Card(
-                color: Colors.blue,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: 150,
-                  child: Text(
-                    "Privacy Policy ->",
-                    style: TextStyle(color: Colors.white),
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(Uri.parse(url));
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: Card(
+                  color: Colors.blue,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    width: 150,
+                    child: Text(
+                      "Privacy Policy ->",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Spacer(),
-            GestureDetector(
-              onTap: () async {
-                var mail =
-                    "https://5stargames.5starcompany.com.ng/terms_conditions.html";
-                var url = Uri.parse(mail).toString();
-                await launchUrl(Uri.parse(url));
-                if (await canLaunchUrl(Uri.parse(url))) {
+              Spacer(),
+              GestureDetector(
+                onTap: () async {
+                  var mail =
+                      "https://5stargames.5starcompany.com.ng/terms_conditions.html";
+                  var url = Uri.parse(mail).toString();
                   await launchUrl(Uri.parse(url));
-                } else {
-                  throw 'Could not launch $url';
-                }
-              },
-              child: Card(
-                color: Colors.blue,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: 150,
-                  child: Text(
-                    "Terms of Use ->",
-                    style: TextStyle(color: Colors.white),
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(Uri.parse(url));
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: Card(
+                  color: Colors.blue,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    width: 150,
+                    child: Text(
+                      "Terms of Use ->",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],),
-          Row(children: [
-            GestureDetector(
-              onTap: () async {
-                var mail =
-                    "mailto:info@5starcompany.com.ng?subject=Support Needed on 5G Tac Toe";
-                var url = Uri.parse(mail).toString();
-                await launchUrl(Uri.parse(url));
-                if (await canLaunchUrl(Uri.parse(url))) {
+            ],
+          ),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  var mail =
+                      "mailto:info@5starcompany.com.ng?subject=Support Needed on 5G Tac Toe";
+                  var url = Uri.parse(mail).toString();
                   await launchUrl(Uri.parse(url));
-                } else {
-                  throw 'Could not launch $url';
-                }
-              },
-              child: Card(
-                color: Colors.black,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
-                ),
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 50,
-                  width: 150,
-                  child: Text(
-                    "Contact Support",
-                    style: TextStyle(color: Colors.white),
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(Uri.parse(url));
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+                child: Card(
+                  color: Colors.black,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 50,
+                    width: 150,
+                    child: Text(
+                      "Contact Support",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],),
-          SizedBox(height: 40,),
-          Platform.isAndroid||Platform.isIOS && Get.find<NetworkProvider>().isonline.isTrue
-          // ? Obx(() => Get.find<AdsProvider>().banner())
-              ?  Get.find<AdsProvider>().banner()
+            ],
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          Platform.isAndroid ||
+                  Platform.isIOS && Get.find<NetworkProvider>().isonline.isTrue
+              // ? Obx(() => Get.find<AdsProvider>().banner())
+              ? Get.find<AdsProvider>().banner()
               : const SizedBox.shrink(),
-          SizedBox(height: 10,),
-          Platform.isAndroid||Platform.isIOS && Get.find<NetworkProvider>().isonline.isTrue
-          // ? Obx(() => Get.find<AdsProvider>().banner())
-              ?  Get.find<AdsProvider>().banner()
+          SizedBox(
+            height: 10,
+          ),
+          Platform.isAndroid ||
+                  Platform.isIOS && Get.find<NetworkProvider>().isonline.isTrue
+              // ? Obx(() => Get.find<AdsProvider>().banner())
+              ? Get.find<AdsProvider>().banner()
               : const SizedBox.shrink(),
         ],
       ),
@@ -482,9 +488,7 @@ class HomescreenPage extends GetView<HomescreenController> {
           children: [
             Container(
               color: const Color(0xFF0f65fa),
-              padding: EdgeInsets.only(
-                left: 60.w,top: 30, bottom: 20
-              ),
+              padding: EdgeInsets.only(left: 60.w, top: 30, bottom: 20),
               width: 678.w,
               // height: 185.w,
               child: Column(
@@ -501,7 +505,9 @@ class HomescreenPage extends GetView<HomescreenController> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   AutoSizeText(
                     email,
                     maxLines: 1,
@@ -515,33 +521,48 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ],
               ),
             ),
-            TextButton(onPressed: (){
-              Get.toNamed("/tictoe");
-            }, child: const Text("Tic Tac Toe")),
-            TextButton(onPressed: (){
-              Get.toNamed("/spinandwin");
-            }, child: const Text("Spin & Win")),
-            TextButton(onPressed: (){
-              // Get.toNamed("/dayily");
-              CustomAlertDialogloader(
-                  title: "Info",
-                  message: "Coming soon...",
-                  negativeBtnText: 'Ok');
-            }, child: const Text("Daily login")),
-            TextButton(onPressed: (){
-              Get.toNamed("/withdraw");
-            }, child: const Text("Withdraw")),
-            TextButton(onPressed: (){
-              Get.toNamed("/banks");
-            }, child: const Text("Banks")),
-             TextButton(onPressed: (){
-              Get.toNamed("/withdrawhistory");
-            }, child: const Text("Withdraw history")),
-            TextButton(onPressed: (){
-              Get.toNamed("/pointhistory");
-            }, child: const Text("Point history")),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed("/tictoe");
+                },
+                child: const Text("Tic Tac Toe")),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed("/spinandwin");
+                },
+                child: const Text("Spin & Win")),
+            TextButton(
+                onPressed: () {
+                  // Get.toNamed("/dayily");
+                  CustomAlertDialogloader(
+                      title: "Info",
+                      message: "Coming soon...",
+                      negativeBtnText: 'Ok');
+                },
+                child: const Text("Daily login")),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed("/withdraw");
+                },
+                child: const Text("Withdraw")),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed("/banks");
+                },
+                child: const Text("Banks")),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed("/withdrawhistory");
+                },
+                child: const Text("Withdraw history")),
+            TextButton(
+                onPressed: () {
+                  Get.toNamed("/pointhistory");
+                },
+                child: const Text("Point history")),
             const Spacer(),
-            TextButton(onPressed: controller.signUserOut, child: const Text("Logout")),
+            TextButton(
+                onPressed: controller.signUserOut, child: const Text("Logout")),
           ],
         ),
       ),

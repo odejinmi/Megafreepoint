@@ -42,8 +42,8 @@ dependencies:
   flutter_screenutil: ^5.9.0
   auto_size_text: ^3.0.0
   advert:
-#    path: ../advert
-      git: https://github.com/odejinmi/advert.git
+    path: ../advert
+#      git: https://github.com/odejinmi/advert.git
   get_storage: ^2.1.1
   connectivity_plus: ^5.0.2
   flutter_hooks: ^0.18.6

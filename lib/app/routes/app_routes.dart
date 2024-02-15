@@ -14,4 +14,5 @@ abstract class Routes {
   static const BANKS = '/banks'; // banks page
   static const WITHDRAWHISTORY = '/withdrawhistory'; // withdrawhistory page
   static const POINTHISTORY = '/pointhistory'; // pointhistory page
+  static const MEMORYMATCH = '/memorymatch'; // memorymatch page
 }

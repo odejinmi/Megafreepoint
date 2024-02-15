@@ -43,6 +43,10 @@ class tictoeController extends GetxController{
     // TODO: implement onInit
     super.onInit();
     gameInitialization();
+
+    Get.find<AdsProvider>().loadinterrtitialad();
+    Get.find<AdsProvider>().loadrewardedad();
+    Get.find<AdsProvider>().loadrewardedinterstitialad();
     Future.delayed(const Duration(milliseconds: 10)).then((value) {
       // showstartalert ();
     });

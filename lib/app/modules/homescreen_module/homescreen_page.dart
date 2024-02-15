@@ -62,7 +62,7 @@ class HomescreenPage extends GetView<HomescreenController> {
                       left: 60.w,
                     ),
                     width: 678.w,
-                    height: 185.w,
+                    height: 195.w,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -318,7 +318,8 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(() => MemoryMatch());
+
+                    Get.toNamed("/memorymatch");
                   },
                   text: 'Memory Match',
                   asset: 'assets/Images/tic_tac_toe.png',

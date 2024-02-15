@@ -67,7 +67,7 @@ final _isloading = false.obs;
     fetchbankaccounts();
     _timer = Timer.periodic(const Duration(seconds: 31), (timer) {
       // this function will be called every second
-      print('Hello');
+      debugPrint('Hello');
       // advert.showreawardads((){addpoint();});
       // advert.shownativeads();
     });

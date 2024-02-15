@@ -1,3 +1,5 @@
+import '../../app/modules/memorymatch_module/memorymatch_page.dart';
+import '../../app/modules/memorymatch_module/memorymatch_bindings.dart';
 import '../../app/modules/pointhistory_module/pointhistory_page.dart';
 import '../../app/modules/pointhistory_module/pointhistory_bindings.dart';
 import '../../app/modules/withdrawhistory_module/withdrawhistory_page.dart';
@@ -75,6 +77,11 @@ abstract class AppPages {
       name: Routes.POINTHISTORY,
       page: () => pointhistoryPage(),
       binding: pointhistoryBinding(),
+    ),
+    GetPage(
+      name: Routes.MEMORYMATCH,
+      page: () => memorymatchPage(),
+      binding: memorymatchBinding(),
     ),
   ];
 }

@@ -155,8 +155,8 @@ class spinningController extends GetxController{
     var response = await apicontroller.posttokendetail(
         "https://5stargames.5starcompany.com.ng/api/spinwin-continue", body);
     apicontroller.loginprogress(response, success: (serverdata) {
-      print("serverdata");
-      print(serverdata);
+      debugPrint("serverdata");
+      debugPrint(serverdata);
       // prefs.write('name', serverdata['name'] ?? "user");
       // prefs.write('email', serverdata['email'] ?? "user");
       // prefs.write('phone', serverdata['phone'] ?? "user");

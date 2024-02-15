@@ -81,7 +81,8 @@ class tictoePage extends GetView<tictoeController> {
             const SizedBox(height: 20,),
             Center(
               child: Obx(() {
-                return controller.advertready && !controller.click ?GestureDetector(
+                return controller.advertready && !controller.click
+                    ? GestureDetector(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 40, vertical: 10),
@@ -89,9 +90,9 @@ class tictoePage extends GetView<tictoeController> {
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                         color: Colors.purple
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: const [
+                      children: [
                         // Spacer(),
                         Text("Watch ad", style: TextStyle(color: Colors.white),),
                         SizedBox(width: 10,),
@@ -107,7 +108,8 @@ class tictoePage extends GetView<tictoeController> {
                     });
                     // controller.overlayEntry1.remove();
                   },
-                ): const SizedBox.shrink();
+                )
+                    : const SizedBox.shrink();
               }),
             ),
             const SizedBox(height: 20,),

@@ -88,7 +88,7 @@ class _SpinningwheelState extends State<Spinningwheel> {
               if (controller.isAnimating == true) {
                 Get.find<AdsProvider>().showreawardads(controller.handleRoll);
               }else{
-                print("ati ja kooooooo");
+                debugPrint("ati ja kooooooo");
               }
             },
           )

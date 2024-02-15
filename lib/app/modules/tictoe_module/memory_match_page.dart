@@ -1,9 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'dart:async';
 import 'dart:math';
+
+import 'package:get/get.dart';
+
+import '../../provider/adsProvider.dart';
 
 class MemoryMatch extends StatefulWidget {
   @override
@@ -20,10 +25,12 @@ class _MemoryMatchState extends State<MemoryMatch> {
   int attempts=0;
   bool isGameOver=false;
 
+  BannerAd? _bannerAd;
   @override
   void initState() {
     super.initState();
     initializeGame();
+    Get.find<AdsProvider>().loadinterrtitialad();
   }
 
   void initializeGame() {
@@ -63,14 +70,20 @@ class _MemoryMatchState extends State<MemoryMatch> {
           // All pairs have been found
           isGameOver = true;
         }
+        if(attempts >= 50){
+          isGameOver = true;
+        }
       });
     }
   }
 
-  void restartGame() {
-    setState(() {
-      initializeGame();
-    });
+  Future<void> restartGame() async {
+    var value = await Get.find<AdsProvider>().showads();
+    if(value.status) {
+      setState(() {
+        initializeGame();
+      });
+    }
   }
 
   @override
@@ -118,6 +131,8 @@ class _MemoryMatchState extends State<MemoryMatch> {
                 onPressed: restartGame,
                 child: Text('Restart Game'),
               ),
+            SizedBox(height: 20),
+            Get.find<AdsProvider>().banner()
           ],
         ),
       ),

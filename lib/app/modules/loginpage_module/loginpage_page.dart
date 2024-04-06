@@ -166,8 +166,7 @@ class loginpagePage extends GetView<loginpageController> {
                           height: 20,
                         ),
                         Obx(() =>
-                        controller.isEmailCorrect
-                            ? controller.isloading ? loader() : ElevatedButton(
+                        controller.isloading ? loader() : ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
@@ -192,11 +191,11 @@ class loginpagePage extends GetView<loginpageController> {
                               //     MaterialPageRoute(
                               //         builder: (context) => loginScreen()));
                             },
-                            child: const Text(
+                            child: Text(
                               'Log In',
-                              style: TextStyle(fontSize: 17),
+                              style: TextStyle(fontSize: 17, color:Colors.white),
                             ))
-                            : Container()),
+                        ),
                       ],
                     ),
                   ),

@@ -121,7 +121,7 @@ class signupPage extends GetView<signupController> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 20, right: 20, bottom: 20, top: 20),
+                                left: 20, right: 20, bottom: 20,),
                             child: TextFormField(
                               autofillHints: const [AutofillHints.username],
                               controller: controller.mobileNumberController
@@ -156,7 +156,7 @@ class signupPage extends GetView<signupController> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(
-                                left: 20, right: 20, bottom: 20, top: 20),
+                                left: 20, right: 20, bottom: 20),
                             child: TextFormField(
                               autofillHints: const [AutofillHints.name],
                               controller: controller.nameController.value,

@@ -1,23 +1,38 @@
 import 'package:get/get.dart';
+import 'package:megafreepoint/app/components/custom_alert_dialog.dart';
 
 import '../../provider/adsProvider.dart';
 /**
  * GetX Template Generator - fb.com/htngu.99
  * */
 
-class memorymatchController extends GetxController{
-
+class memorymatchController extends GetxController {
   final _obj = ''.obs;
   set obj(value) => _obj.value = value;
   get obj => _obj.value;
 
   final _cards = [
-    '🐱', '🐱', '🐶', '🐶', '🐻', '🐻', '🐰', '🐰', '🐼', '🐼', '🐨', '🐨', '🐯', '🐯', '🦁', '🦁'
+    '🐱',
+    '🐱',
+    '🐶',
+    '🐶',
+    '🐻',
+    '🐻',
+    '🐰',
+    '🐰',
+    '🐼',
+    '🐼',
+    '🐨',
+    '🐨',
+    '🐯',
+    '🐯',
+    '🦁',
+    '🦁'
   ].obs;
   set cards(value) => _cards.value = value;
   get cards => _cards.value;
 
-  final _cardFlips= <bool>[].obs;
+  final _cardFlips = <bool>[].obs;
   set cardFlips(value) => _cardFlips.value = value;
   List<bool> get cardFlips => _cardFlips.value;
 
@@ -36,6 +51,8 @@ class memorymatchController extends GetxController{
   final _isGameOver = false.obs;
   set isGameOver(value) => _isGameOver.value = value;
   get isGameOver => _isGameOver.value;
+
+  var scoreBeforeAd = 10;
 
   @override
   void onInit() {
@@ -57,41 +74,55 @@ class memorymatchController extends GetxController{
   }
 
   void flipCard(int index) {
+    if (attempts >= scoreBeforeAd) {
+      CustomAlertDialogloader(
+          title: "Points won",
+          message:
+              "You have reached $scoreBeforeAd attempts. Click on Watch an Ad to continue",
+          negativeBtnText: "Continue",
+          positiveBtnText: "Restart Game",
+          onNegativePressed: () {},
+          onPostivePressed: () {
+            isGameOver = true;
+          });
+      return;
+    }
+
     if (!isGameOver && !cardFlips[index]) {
-        cardFlips[index] = true;
-        if (prevCardIndex == -1) {
-          prevCardIndex = index;
-        } else {
-          // Check if the two flipped cards match
-          if (cards[index] != cards[prevCardIndex]) {
-            Future.delayed(Duration(seconds: 1), () {
-              // If not a match, flip them back over after a delay
-                cardFlips[index] = false;
-                cardFlips[prevCardIndex] = false;
-                prevCardIndex = -1;
-            });
-          } else {
-            // If they match, keep them face-up
-            pairsFound++;
+      cardFlips[index] = true;
+      if (prevCardIndex == -1) {
+        prevCardIndex = index;
+      } else {
+        // Check if the two flipped cards match
+        if (cards[index] != cards[prevCardIndex]) {
+          Future.delayed(Duration(seconds: 1), () {
+            // If not a match, flip them back over after a delay
+            cardFlips[index] = false;
+            cardFlips[prevCardIndex] = false;
             prevCardIndex = -1;
-          }
-          attempts++;
+          });
+        } else {
+          // If they match, keep them face-up
+          pairsFound++;
+          prevCardIndex = -1;
         }
-        if (pairsFound == cards.length ~/ 2) {
-          // All pairs have been found
-          isGameOver = true;
-        }
-        if(attempts >= 50){
-          isGameOver = true;
-        }
+        attempts++;
+      }
+      if (pairsFound == cards.length ~/ 2) {
+        // All pairs have been found
+        isGameOver = true;
+      }
+      if (attempts >= 50) {
+        isGameOver = true;
+      }
     }
   }
 
   Future<void> restartGame() async {
     var value = await Get.find<AdsProvider>().showads();
     var value2 = await Get.find<AdsProvider>().showreawardads(initializeGame);
-    if(value.status) {
-        initializeGame();
+    if (value.status) {
+      initializeGame();
     }
   }
 }

@@ -1,9 +1,12 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-
 import 'dart:async';
 import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:megafreepoint/app/components/custom_alert_dialog.dart';
+import 'package:megafreepoint/app/data/provider/Globalvariable.dart';
+
+import '../../provider/adsProvider.dart';
 
 class BrickBreaker extends StatefulWidget {
   @override
@@ -19,7 +22,7 @@ class _BrickBreakerState extends State<BrickBreaker> {
   double ballYSpeed = 0.008;
   double brickWidth = 0.1;
   double brickHeight = 0.04;
-  List<Brick> bricks=[];
+  List<Brick> bricks = [];
   int score = 0;
   int lives = 3;
   bool isGameOver = false;
@@ -28,7 +31,18 @@ class _BrickBreakerState extends State<BrickBreaker> {
   @override
   void initState() {
     super.initState();
-    startGame();
+
+    Future.delayed(const Duration(seconds: 1), () async {
+      CustomAlertDialogloader(
+        title: "How Points are Earned!!",
+        message:
+            "You earned points on every 5 hundredth score. And you have 4 miss attempts.",
+        negativeBtnText: "Start Game",
+        onNegativePressed: () {
+          startGame();
+        },
+      );
+    });
   }
 
   void startGame() {
@@ -77,6 +91,12 @@ class _BrickBreakerState extends State<BrickBreaker> {
           bricks.removeAt(i);
           i--;
           score += 5;
+
+          var cPoint = score / 500;
+
+          if (cPoint == 1 || cPoint == 2 || cPoint == 3 || cPoint == 4) {
+            addpoint();
+          }
         }
       }
       if (bricks.isEmpty) {
@@ -109,6 +129,8 @@ class _BrickBreakerState extends State<BrickBreaker> {
     setState(() {
       isGameOver = true;
     });
+
+    Get.find<AdsProvider>().showreawardads(() {});
   }
 
   bool ballCollidesWithBrick(Brick brick) {
@@ -204,11 +226,21 @@ class _BrickBreakerState extends State<BrickBreaker> {
                         color: Colors.white,
                       ),
                     ),
-
-                    SizedBox(height: 20,),
-                    GestureDetector(child: Container(color:Colors.white, padding: EdgeInsets.all(9) , child: Text('Start Again', style: TextStyle(fontWeight: FontWeight.w900),)), onTap: (){
-                      startGame();
-                    },)
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      child: Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.all(9),
+                          child: Text(
+                            'Start Again',
+                            style: TextStyle(fontWeight: FontWeight.w900),
+                          )),
+                      onTap: () {
+                        startGame();
+                      },
+                    )
                   ],
                 ),
               ),

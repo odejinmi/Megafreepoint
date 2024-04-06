@@ -24,21 +24,19 @@ class MyApp extends StatelessWidget {
         designSize: const Size(1080, 1920),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: (context , child) {
-        return GetMaterialApp(
-          title: 'Flutter Demo',
-          theme: appThemeData,
-          debugShowCheckedModeBanner: false,
-          initialRoute: token == "you"?'/loginpage':'/homescreen',
-          getPages: AppPages.pages,
-          initialBinding: BindingsBuilder(() {
-            Get.lazyPut(() => NetworkProvider(), fenix: true);
-            Get.lazyPut(() => AdsProvider(), fenix: true);
-            // Get.lazyPut(() => ApiProvider(), fenix: true);
-          }),
-        );
-      }
-    );
+        builder: (context, child) {
+          return GetMaterialApp(
+            title: '5G Tac Toe',
+            theme: appThemeData,
+            debugShowCheckedModeBanner: false,
+            initialRoute: token == "you" ? '/loginpage' : '/homescreen',
+            getPages: AppPages.pages,
+            initialBinding: BindingsBuilder(() {
+              Get.lazyPut(() => NetworkProvider(), fenix: true);
+              Get.lazyPut(() => AdsProvider(), fenix: true);
+              // Get.lazyPut(() => ApiProvider(), fenix: true);
+            }),
+          );
+        });
   }
 }
-

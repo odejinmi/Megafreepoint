@@ -13,9 +13,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../provider/adsProvider.dart';
 import '../../provider/networkProvider.dart';
 import '../tictoe_module/brick_breaker_page.dart';
-import '../tictoe_module/dot_page.dart';
-import '../tictoe_module/memory_match_page.dart';
-import '../tictoe_module/pong_page.dart';
 import '../tictoe_module/whack_page.dart';
 import 'feature_item.dart';
 
@@ -267,50 +264,6 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ),
                 FeatureItem(
                   onTap: () {
-                    Get.to(() => Pong());
-                  },
-                  text: 'Pong',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-                FeatureItem(
-                  onTap: () {
-                    Get.to(() => TapTheDot());
-                  },
-                  text: 'TapTheDot',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            // height: 775.w,
-            width: 1.sw,
-            decoration: BoxDecoration(
-                border: Border(
-              bottom: BorderSide(width: 6.w, color: const Color(0xFFf7f7f7)),
-            )),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FeatureItem(
-                  onTap: () {
-                    Get.to(() => Pong());
-                  },
-                  text: 'Pong',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-                FeatureItem(
-                  onTap: () {
-                    Get.to(() => TapTheDot());
-                  },
-                  text: 'TapTheDot',
-                  asset: 'assets/Images/tic_tac_toe.png',
-                ),
-                FeatureItem(
-                  onTap: () {
                     Get.to(() => BrickBreaker());
                   },
                   text: 'BrickBreaker',
@@ -318,7 +271,6 @@ class HomescreenPage extends GetView<HomescreenController> {
                 ),
                 FeatureItem(
                   onTap: () {
-
                     Get.toNamed("/memorymatch");
                   },
                   text: 'Memory Match',
